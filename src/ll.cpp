@@ -13,18 +13,26 @@ namespace snakelinkedlist {
 		head_ = new_node;
 	}
 
+	void push_back(SnakeBodySegment value) {
+
+	}
+
 	void pop_front() {
 		if (!head_) {
-			return;
+			return NULL;
 		} 
 		ListNode *tmp = head_;
-		head_ = head_->next_;
+		if (!head_->next_) {
+			head_ == nullptr;
+		} else {
+			head_ = head_->next_;
+		}
 		delete tmp;
 	}
 
 	void pop_back() {
 		if (!head_) {
-			return;
+			return NULL;
 		}
 		ListNode *remove_next = head_;
 		while (remove_next->next_ && remove_next->next_->next) {
@@ -33,5 +41,7 @@ namespace snakelinkedlist {
 		delete remove_next->next;
 		remove_next = nullptr;
 	}
+
+	
 
 } // namespace snakelinkedlist
