@@ -53,6 +53,34 @@ namespace snakelinkedlist {
 		remove_next = nullptr;
 	}
 
-	
+	void removeNth(int n) {
+		if (n == 0) {
+			pop_front();
+		} else if (n == this.size()) {
+			pop_back();
+		} else {
+			counter = n - 1;
+			ListNode *previous = head_;
+			ListNode *current = head_->next;
+			//iterate to get current to the node we want to take out
+			while (counter > 0) {
+				current->next_;
+				previous->next_;
+			}
+			//now point previous to the next of the current and take the nth element out
+			previous = current->next;
+			delete current;
+		}
+	}
+
+	void clear() {
+		ListNode *current = head_;
+		ListNode *next;
+		while (current != NULL) {
+			next = current->next_;
+			delete current;
+			current = next;
+		}
+	}
 
 } // namespace snakelinkedlist

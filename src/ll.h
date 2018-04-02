@@ -13,7 +13,7 @@ namespace snakelinkedlist {
  */
 	struct ListNode {
 		SnakeBodySegment snake_;
-		ListNode next_;
+		ListNode* next_;
 		ListNode(SnakeBodySegment snakes) : snake_(snakes), next_(nullptr) {};
 	}; 
 
