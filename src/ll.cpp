@@ -17,8 +17,7 @@ namespace snakelinkedlist {
 		ListNode *new_node = new ListNode(value);
 		if (!head_) {
 			push_front(value);
-		}
-		else {
+		} else {
 			ListNode *tail = head_;
 			while (tail->next_) {
 				tail = tail->next_;
@@ -118,18 +117,52 @@ namespace snakelinkedlist {
 	}
 
 	std::vector<SnakeBodySegment> GetVector() {
-	
+		ListNode* current = head_;
+		std::vector<SnakeBodySegment> snake_data;
+		while (current != NULL) {
+			vector.push_back(SnakeBodySegment{ current->data_ });
+		}
+		return snake_data;
 	}
-	bool empty() {
 
+	bool empty() {
+		if (size() == 0) {
+			return true;
+		}
+		return false;
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const LinkedList& list) {
-
+		ListNode* current = list.head_;
+		if (list.size() == 1) {
+			os << current->data_;
+		} else {
+			while (current && current->next_) {
+				os << current->data_ << ", ";
+				current = current->next_;
+			}
+			if (list.size() > 1) {
+				os << current->data_;
+			}
+		}
 	}
 
 	bool operator==(const LinkedList& rhs) {
+		ListNode* current = head_->next_;
+		while (current != NULL) {
+			if (head_ != current) {
+				return false;
+			}
+			current = current->next_;
+		}
+		return true;
+	}
 
+	bool operator!=(const LinkedList& lhs, const LinkedList& rhs) {
+		if (rhs == lhs) {
+			return false;
+		}
+		return true;
 	}
 
 } // namespace snakelinkedlist
