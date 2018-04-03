@@ -12,9 +12,9 @@ namespace snakelinkedlist {
  *  Declare any struct, class, or enum types you need to use here
  */
 	struct ListNode {
-		SnakeBodySegment snake_;
+		SnakeBodySegment data_;
 		ListNode* next_;
-		ListNode(SnakeBodySegment snakes) : snake_(snakes), next_(nullptr) {};
+		ListNode(SnakeBodySegment snake) : data_(snake), next_(nullptr) {};
 	}; 
 
 // Specialied linked list class
@@ -24,7 +24,7 @@ class LinkedList {
      *  internal structs, classes, or enum types here
      */
 
-	ListNode head_;
+	ListNode* head_;
 
 public:
     // Default constructor

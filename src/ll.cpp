@@ -56,13 +56,16 @@ namespace snakelinkedlist {
 	void removeNth(int n) {
 		if (n == 0) {
 			pop_front();
-		} else if (n == this.size()) {
+		} else if (n == this.size() - 1) {
 			pop_back();
+		}
+		else if (n < 0 || n >= this.size()) {
+			return;
 		} else {
 			counter = n - 1;
 			ListNode *previous = head_;
 			ListNode *current = head_->next;
-			//iterate to get current to the node we want to take out
+			//iterate to get current to the nth node
 			while (counter > 0) {
 				current->next_;
 				previous->next_;
