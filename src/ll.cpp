@@ -113,6 +113,7 @@ namespace snakelinkedlist {
 			current = current->next_;
 			counter++;
 		}
+		delete current;
 		return counter;
 	}
 
@@ -122,6 +123,7 @@ namespace snakelinkedlist {
 		while (current != NULL) {
 			vector.push_back(SnakeBodySegment{ current->data_ });
 		}
+		delete current;
 		return snake_data;
 	}
 
@@ -151,6 +153,7 @@ namespace snakelinkedlist {
 		ListNode* current = head_->next_;
 		while (current != NULL) {
 			if (head_ != current) {
+				delete current;
 				return false;
 			}
 			current = current->next_;
@@ -164,5 +167,28 @@ namespace snakelinkedlist {
 		}
 		return true;
 	}
+
+	//DEFAULT CONSTRUCTOR
+	LinkedList::LinkedList() : head_(nullptr);
+
+	//INITALIZE FROM VECTOR
+	explicit LinkedList::LinkedList(const std::vector<SnakeBodySegment>& values) {
+		ListNode *current = head_;
+		for (int i = 0; i < values.size - 1; i++) {
+			current = value[i];
+			current = current->next_;
+		}
+		current = values[values.size - 1];
+		current->next_ = nullptr;
+	}
+
+	//BIG 5
+	//Delete LinkedList
+	LinkedList::~LinkedList() {
+		clear();
+		*head_ = NULL;
+	}
+
+
 
 } // namespace snakelinkedlist
