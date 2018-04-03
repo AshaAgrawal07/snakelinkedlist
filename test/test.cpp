@@ -147,5 +147,49 @@ using namespace snakelinkedlist {
 		snake_list.pop_back();
 		REQUIRE(snake_list.size() == 0);
 	}
+
+	TEST_CASE("getVector() tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		vector<SnakeBodySegment> empty = { SnakeBodySegment() };
+		REQUIRE(snake_list.GetVector() == empty);
+
+		snake_list.push_front(SnakeBodySegment{ 1 });
+		vector<SnakeBodySegment> one_elem = { SnakeBodySegment{1} };
+		REQUIRE(snake_list.GetVector() == one_elem);
+
+		snake_list.push_back(SnakeBodySegment{ 2 });
+		vector<SnakeBodySegment> two_elem = { SnakeBodySegment{1}, SnakeBodySegment{2} };
+		REQUIRE(snake_list.GetVector() == two_elem);
+	}
+
+	TEST_CASE("empty tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		REQUIRE(snake_list.empty() == true);
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE(snake_list.empty() == false);
+
+		snake_list.pop_back();
+		REQUIRE(snake_list.empty() == true);
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		snake_list.clear();
+		REQUIRE(snake_list.empty() == true);
+	}
+
+	TEST_CASE("<< overload tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		REQUIRE((cout << snake_list) == "");
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE((cout << snake_list) == "1");
+
+		snake_list.push_back(SnakeBodySegment{ 2 });
+		REQUIRE((cout << snake_list) == "1, 2");
+	}
+
+	TEST_CASE("== overload with 1 param") {
+
+	}
 	std::cin >> int x;
 }
