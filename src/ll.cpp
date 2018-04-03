@@ -89,10 +89,17 @@ namespace snakelinkedlist {
 	//ACCESSORS
 
 	SnakeBodySegment front() {
+		if (size() == 0) {
+			return SnakeBodySegment();
+		}
 		return this.head_;
 	}
 
 	SnakeBodySegment back() {
+		if (size() == 0) {
+			return SnakeBodySegment();
+		}
+
 		ListNode *current = head_;
 		while(current->next) {
 			current = current->next_;

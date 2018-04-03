@@ -4,6 +4,9 @@
 #include <vector>
 
 using namespace snakelinkedlist {
+	
+	//TESTS FOR MODIFIER METHODS
+
 	TEST_CASE("push_front tests") {
 		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
 		snake_list.push_front(SnakeBodySegment{ 1 });
@@ -102,5 +105,47 @@ using namespace snakelinkedlist {
 		REQUIRE(*snake_list.head_ == nullptr);
 	}
 
+	//TESTS FOR ACCESSOR METHODS
+
+	TEST_CASE("front() tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		REQUIRE(snake_list.front() == SnakeBodySegment());
+		
+		snake_list.push_front(SnakeBodySegment{ 1 });
+		REQUIRE(snake_list.front().data_ == 1);
+		snake_list.push_back(SnakeBodySegment{ 2 });
+		REQUIRE(snake_list.front().data_ == 1);
+		snake_list.push_front(SnakeBodySegment{ 3 });
+		REQUIRE(snake_list.front().data_ == 3);
+	}
+
+	TEST_CASE("back() tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		REQUIRE(snake_list.back() == SnakeBodySegment());
+
+		snake_list.push_front(SnakeBodySegment{ 1 });
+		REQUIRE(snake_list.back().data_ == 1);
+		snake_list.push_back(SnakeBodySegment{ 2 });
+		REQUIRE(snake_list.back().data_ == 2);
+		snake_list.push_front(SnakeBodySegment{ 3 });
+		REQUIRE(snake_list.back().data_ == 2);
+	}
+
+	TEST_CASE("size() tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		REQUIRE(snake_list.size() == 0);
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE(snake_list.size() == 1);
+
+		snake_list.push_front(SnakeBodySegment{ 2 });
+		REQUIRE(snake_list.size() == 2);
+
+		snakelinkedlist.pop_front();
+		REQUIRE(snake_list.size() == 1);
+
+		snake_list.pop_back();
+		REQUIRE(snake_list.size() == 0);
+	}
 	std::cin >> int x;
 }
