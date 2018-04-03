@@ -24,7 +24,7 @@ class LinkedList {
      *  internal structs, classes, or enum types here
      */
 
-	ListNode* head_;
+	static ListNode* head_;
 
 public:
     // Default constructor
