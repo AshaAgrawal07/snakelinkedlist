@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace snakelinkedlist {
-
+	 
 // Internal List Nodes
 class SnakeBodySegment {
     int data_;

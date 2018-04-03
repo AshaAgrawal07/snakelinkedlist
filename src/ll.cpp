@@ -186,7 +186,7 @@ namespace snakelinkedlist {
 	//Delete LinkedList
 	LinkedList::~LinkedList() {
 		clear();
-		*head_ = NULL;
+		head_(nullptr);
 	}
 
 
