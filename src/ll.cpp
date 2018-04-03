@@ -86,4 +86,43 @@ namespace snakelinkedlist {
 		}
 	}
 
+	//ACCESSORS
+
+	SnakeBodySegment front() {
+		return this.head_;
+	}
+
+	SnakeBodySegment back() {
+		ListNode *current = head_;
+		while(current->next) {
+			current = current->next_;
+		}
+		return current->next_;
+	}
+
+	int size() {
+		int counter = 0;
+		ListNode *current = head_;
+		while (current != NULL) {
+			current = current->next_;
+			counter++;
+		}
+		return counter;
+	}
+
+	std::vector<SnakeBodySegment> GetVector() {
+	
+	}
+	bool empty() {
+
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const LinkedList& list) {
+
+	}
+
+	bool operator==(const LinkedList& rhs) {
+
+	}
+
 } // namespace snakelinkedlist
