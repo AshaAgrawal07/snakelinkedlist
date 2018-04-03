@@ -188,8 +188,58 @@ using namespace snakelinkedlist {
 		REQUIRE((cout << snake_list) == "1, 2");
 	}
 
-	TEST_CASE("== overload with 1 param") {
+	TEST_CASE("== overload with 1 param tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList;
+		REQUIRE(((cout << snake_list) == snake_list_2) == true);
 
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE(((cout << snake_list) == snake_list_2) == false);
+
+		snake_list_2.push_front(SnakeBodySegment{ 1 });
+		REQUIRE(((cout << snake_list) == snake_list_2) == true);
+
+		snake_list.pop_back();
+		REQUIRE(((cout << snake_list) == snake_list_2) == false);
+
+		snake_list_2.pop_front();
+		REQUIRE(((cout << snake_list) == snake_list_2) == true);
+	}
+
+	TEST_CASE("== overload with 2 params tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList;
+		REQUIRE((snake_list == snake_list_2) == true);
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE((snake_list == snake_list_2) == false);
+
+		snake_list_2.push_front(SnakeBodySegment{ 1 });
+		REQUIRE((snake_list == snake_list_2) == true);
+
+		snake_list.pop_back();
+		REQUIRE((snake_list == snake_list_2) == false);
+
+		snake_list_2.pop_front();
+		REQUIRE((snake_list == snake_list_2) == true);
+	}
+
+	TEST_CASE("!= overload tests") {
+		snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList;
+		snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList;
+		REQUIRE((snake_list != snake_list_2) == false);
+
+		snake_list.push_back(SnakeBodySegment{ 1 });
+		REQUIRE((snake_list != snake_list_2) == true);
+
+		snake_list_2.push_front(SnakeBodySegment{ 1 });
+		REQUIRE((snake_list != snake_list_2) == false);
+
+		snake_list.pop_back();
+		REQUIRE((snake_list != snake_list_2) == true);
+
+		snake_list_2.pop_front();
+		REQUIRE((snake_list != snake_list_2) == false);
 	}
 	std::cin >> int x;
 }
