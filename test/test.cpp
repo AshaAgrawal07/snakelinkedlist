@@ -27,6 +27,7 @@ namespace snakelinkedlist {
 
     TEST_CASE("push_back test cases") {
         LinkedList *snake_list = new LinkedList();
+        REQUIRE(snake_list->size() == 0);
         SnakeBodySegment *add1 = new SnakeBodySegment(1);
         snake_list->push_back(*add1);
         REQUIRE(snake_list->size() == 1);
@@ -65,7 +66,7 @@ namespace snakelinkedlist {
         REQUIRE(snake_list->head_->data_ == 1);
         REQUIRE(snake_list->head_->next_ == nullptr);
         snake_list->pop_back();
-        REQUIRE(snake_list->size() == 1);
+        REQUIRE(snake_list->size() == 0);
         REQUIRE(snake_list->head_->next_ == nullptr);
     }
 
@@ -100,13 +101,13 @@ namespace snakelinkedlist {
         REQUIRE(snake_list->size() == 3);
 
         //tests that will see if pop back was called and executed properly
-        snake_list->RemoveNth(2);
+        snake_list->RemoveNth(1);
         REQUIRE(snake_list->size() == 2);
         REQUIRE(snake_list->head_->data_ == 2);
         //REQUIRE(snake_list->GetVector().at(2) == SnakeBodySegment{3});
         REQUIRE(snake_list->head_->next_->next_ == nullptr);
     }
-/*
+
     TEST_CASE("clear tests") {
         LinkedList *snake_list = new LinkedList();
         snake_list->clear();
@@ -117,7 +118,6 @@ namespace snakelinkedlist {
         snake_list->push_back(*add1);
         snake_list->clear();
         REQUIRE(snake_list->size() == 0);
-        //REQUIRE(*snake_list.front() == nullptr);
     }
 
 //TESTS FOR ACCESSOR METHODS
@@ -133,7 +133,7 @@ namespace snakelinkedlist {
 
         SnakeBodySegment *add2 = new SnakeBodySegment(2);
         snake_list->push_front(*add2);
-        REQUIRE(snake_list->front() == SnakeBodySegment{1});
+        REQUIRE(snake_list->front() == SnakeBodySegment{2});
 
         SnakeBodySegment *add3 = new SnakeBodySegment(3);
         snake_list->push_front(*add3);
@@ -142,7 +142,7 @@ namespace snakelinkedlist {
 
     TEST_CASE("back() tests") {
         LinkedList *snake_list = new LinkedList();
-        REQUIRE(snake_list->back() == snakelinkedlist::SnakeBodySegment());
+        REQUIRE((snake_list->back()) == SnakeBodySegment(0));
 
         SnakeBodySegment *add1 = new SnakeBodySegment(1);
         snake_list->push_back(*add1);
@@ -192,7 +192,7 @@ namespace snakelinkedlist {
                                                                    snakelinkedlist::SnakeBodySegment{2}};
         REQUIRE(snake_list->GetVector() == two_elem);
     }
-
+/*
     TEST_CASE("empty tests") {
         LinkedList *snake_list = new LinkedList();
         REQUIRE(snake_list->empty() == true);

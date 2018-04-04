@@ -24,6 +24,7 @@ class LinkedList {
      *  internal structs, classes, or enum types here
      */
 public: ListNode* head_;
+    int length;
 
 public:
     // Default constructor

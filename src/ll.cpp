@@ -11,6 +11,7 @@ namespace snakelinkedlist {
         ListNode *new_node = new ListNode(value);
         new_node->next_ = head_;
         head_ = new_node;
+        length++;
     }
 
     void LinkedList::push_back(SnakeBodySegment value) {
@@ -23,6 +24,7 @@ namespace snakelinkedlist {
             }
             ListNode *new_node = new ListNode(value);
             tail->next_ = new_node;
+            length++;
         }
     }
 
@@ -34,6 +36,7 @@ namespace snakelinkedlist {
         if (!head_->next_) {
             head_ == nullptr;
         } else {
+            length--;
             head_ = head_->next_;
         }
         delete tmp;
@@ -49,6 +52,7 @@ namespace snakelinkedlist {
         }
         delete remove_next->next_;
         remove_next = nullptr;
+        length--;
     }
 
     void LinkedList::RemoveNth(int n) {
@@ -59,20 +63,20 @@ namespace snakelinkedlist {
         } else if (n < 0 || n >= size()) {
             return;
         } else {
-            int counter = n - 1;
-            ListNode *previous = head_;
-            ListNode *current = head_->next_;
+            ListNode *current = head_;
+
             //iterate to get current to the nth node
-            while (counter > 0) {
-                current->next_;
-                previous->next_;
+            for (int counter = n - 1; counter > 0; counter--) {
+                current = current->next_;
             }
             //now point previous to the next of the current and take the nth element out
-            previous = current->next_;
-            delete current;
+            ListNode *link = current->next_->next_;
+            delete current->next_;
+            current->next_ = link;
+            length--;
         }
     }
-/*
+
     void LinkedList::clear() {
         ListNode *current = head_;
         ListNode *next;
@@ -81,7 +85,8 @@ namespace snakelinkedlist {
             delete current;
             current = next;
         }
-    } /*
+        length = 0;
+    }
 
     //ACCESSORS
 
@@ -94,37 +99,39 @@ namespace snakelinkedlist {
 
     SnakeBodySegment LinkedList::back() const {
         if (size() == 0) {
-            return SnakeBodySegment();
+            return SnakeBodySegment(0);
         }
 
         ListNode *current = head_;
-        while (current->next_) {
+        while (current->next_ != nullptr) {
             current = current->next_;
         }
-        return SnakeBodySegment(current->next_->data_);
+        return current->data_;
     }
-*/
+
     int LinkedList::size() const {
-        int counter = 0;
-        ListNode *current = head_;
-        while (current != nullptr) {
-            current = current->next_;
-            counter++;
-        }
-        delete current;
-        return counter;
+//        int counter = 0;
+//        ListNode *current = head_;
+//        while (current != nullptr) {
+//            current = current->next_;
+//            counter++;
+//        }
+//        delete current;
+//        return counter;
+        return length;
     }
-/*
+
     std::vector<SnakeBodySegment> LinkedList::GetVector() const {
         ListNode *current = head_;
-        std::vector<SnakeBodySegment> snake_data;
+        std::vector<SnakeBodySegment> snake_data {SnakeBodySegment(0)};
         while (current != nullptr) {
             snake_data.push_back(SnakeBodySegment{current->data_});
+            current = current->next_;
         }
         delete current;
         return snake_data;
     }
-
+/**
     bool LinkedList::empty() const {
         if (size() == 0) {
             return true;
@@ -167,7 +174,7 @@ namespace snakelinkedlist {
     }
 */
     //DEFAULT CONSTRUCTOR
-    LinkedList::LinkedList(): head_(NULL){};
+    LinkedList::LinkedList(): head_(NULL), length(0){};
 /*
     //INITALIZE FROM VECTOR
     explicit LinkedList::LinkedList(const std::vector<SnakeBodySegment> &values) {
