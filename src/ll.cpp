@@ -72,7 +72,7 @@ namespace snakelinkedlist {
             delete current;
         }
     }
-
+/*
     void LinkedList::clear() {
         ListNode *current = head_;
         ListNode *next;
@@ -81,7 +81,7 @@ namespace snakelinkedlist {
             delete current;
             current = next;
         }
-    }
+    } /*
 
     //ACCESSORS
 
@@ -103,7 +103,7 @@ namespace snakelinkedlist {
         }
         return SnakeBodySegment(current->next_->data_);
     }
-
+*/
     int LinkedList::size() const {
         int counter = 0;
         ListNode *current = head_;
@@ -114,7 +114,7 @@ namespace snakelinkedlist {
         delete current;
         return counter;
     }
-
+/*
     std::vector<SnakeBodySegment> LinkedList::GetVector() const {
         ListNode *current = head_;
         std::vector<SnakeBodySegment> snake_data;
@@ -165,17 +165,17 @@ namespace snakelinkedlist {
         }
         return true;
     }
-
+*/
     //DEFAULT CONSTRUCTOR
     LinkedList::LinkedList(): head_(NULL){};
-
+/*
     //INITALIZE FROM VECTOR
     explicit LinkedList::LinkedList(const std::vector<SnakeBodySegment> &values) {
         for (int i = 0; i < values.size() - 1; i++) {
             push_back(values[i]);
         }
     }
-
+*//*
     //BIG 5
     //Delete LinkedList
     LinkedList::~LinkedList() {
@@ -237,5 +237,5 @@ namespace snakelinkedlist {
         }
     }
 
-
+*/
 } // namespace snakelinkedlist
