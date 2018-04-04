@@ -328,6 +328,31 @@ namespace snakelinkedlist {
         SnakeBodySegment *add1 = new SnakeBodySegment(1);
         snake_list->push_back(*add1);
         LinkedList *snake_list2 = new LinkedList(*snake_list);
-        REQUIRE(snake_list->size() == 0);
+        REQUIRE(snake_list->size() == 1);
+        REQUIRE(snake_list2->size() == 0);
+    }
+
+    TEST_CASE("copy assignment tests") {
+        LinkedList *snake_list = new LinkedList();
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+
+        LinkedList *snake_list2 = new LinkedList();
+        //SnakeBodySegment *add2 = new SnakeBodySegment(2);
+        //snake_list2->push_back(*add2);
+        snake_list2->operator=(*snake_list);
+        REQUIRE(snake_list2->size() == 1);
+    }
+
+    TEST_CASE("move assignment tests") {
+        LinkedList *snake_list = new LinkedList();
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+
+        LinkedList *snake_list2 = new LinkedList();
+        //SnakeBodySegment *add2 = new SnakeBodySegment(2);
+        //snake_list2->push_back(*add2);
+        snake_list2->operator=(*snake_list);
+        REQUIRE(snake_list2->size() == 1);
     }
 }

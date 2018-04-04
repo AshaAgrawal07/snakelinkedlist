@@ -204,6 +204,7 @@ namespace snakelinkedlist {
 
     //Move constructor
     LinkedList::LinkedList(LinkedList &&source) noexcept : LinkedList(){
+        length = source.length;
         head_ = source.head_;
         head_ = nullptr;
         source.length == 0;
