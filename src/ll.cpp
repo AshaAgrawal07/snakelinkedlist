@@ -185,7 +185,7 @@ namespace snakelinkedlist {
     }
 
     //Deep copy: used this link for inspiration:  https://stackoverflow.com/questions/40320856/linked-list-deep-copy-constructor
-    LinkedList::LinkedList(const LinkedList &source) {
+    LinkedList::LinkedList(const LinkedList &source) : LinkedList(){
         if (source.head_) {
             head_ = new ListNode(*source.head_);
             ListNode *current = head_;
@@ -203,9 +203,10 @@ namespace snakelinkedlist {
     }
 
     //Move constructor
-    LinkedList::LinkedList(LinkedList &&source) noexcept {
+    LinkedList::LinkedList(LinkedList &&source) noexcept : LinkedList(){
         head_ = source.head_;
         head_ = nullptr;
+        source.length == 0;
     }
 
     //Copy assignment operator
