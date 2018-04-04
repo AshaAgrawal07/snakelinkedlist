@@ -192,7 +192,7 @@ namespace snakelinkedlist {
                                                                    snakelinkedlist::SnakeBodySegment{2}};
         REQUIRE(snake_list->GetVector() == two_elem);
     }
-/*
+
     TEST_CASE("empty tests") {
         LinkedList *snake_list = new LinkedList();
         REQUIRE(snake_list->empty() == true);
@@ -210,34 +210,37 @@ namespace snakelinkedlist {
         REQUIRE(snake_list->empty() == true);
     }
 
-//TEST_CASE("<< overload tests") {
-//    snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList();
-//    REQUIRE((cout << snake_list) == "");
-//
-//    snake_list.push_back(snakelinkedlist::SnakeBodySegment{1});
-//    REQUIRE((cout << snake_list) == "1");
-//
-//    snake_list.push_back(snakelinkedlist::SnakeBodySegment{2});
-//    REQUIRE((cout << snake_list) == "1, 2");
-//}
+    TEST_CASE("<< overload tests") {
+        snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList();
+        //expecting ""
+        std::cout << snake_list;
 
-//TEST_CASE("== overload with 1 param tests") {
-//    snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList();
-//    snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList();
-//    REQUIRE(((cout << snake_list) == snake_list_2) == true);
+        snake_list.push_back(snakelinkedlist::SnakeBodySegment{1});
+        //expecting "1"
+        cout << snake_list;
+
+        snake_list.push_back(snakelinkedlist::SnakeBodySegment{2});
+        //expecting "1, 2"
+        cout << snake_list;
+    }
+
+//    TEST_CASE("== overload with 1 param tests") {
+//        snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList();
+//        snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList();
+//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
 //
-//    snake_list.push_back(snakelinkedlist::SnakeBodySegment{1});
-//    REQUIRE(((cout << snake_list) == snake_list_2) == false);
+//        snake_list.push_back(snakelinkedlist::SnakeBodySegment{1});
+//        REQUIRE(((cout << snake_list) == snake_list_2) == false);
 //
-//    snake_list_2.push_front(snakelinkedlist::SnakeBodySegment{1});
-//    REQUIRE(((cout << snake_list) == snake_list_2) == true);
+//        snake_list_2.push_front(snakelinkedlist::SnakeBodySegment{1});
+//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
 //
-//    snake_list.pop_back();
-//    REQUIRE(((cout << snake_list) == snake_list_2) == false);
+//        snake_list.pop_back();
+//        REQUIRE(((cout << snake_list) == snake_list_2) == false);
 //
-//    snake_list_2.pop_front();
-//    REQUIRE(((cout << snake_list) == snake_list_2) == true);
-//}
+//        snake_list_2.pop_front();
+//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
+//    }
 
     TEST_CASE("== overload with 2 params tests") {
         LinkedList *snake_list = new LinkedList();
@@ -287,43 +290,43 @@ namespace snakelinkedlist {
     }
 
     TEST_CASE("construct linked list from vector tests") {
-        vector<SnakeBodySegment> snakes = {1, 2, 3, 4, 0};
+        vector<SnakeBodySegment> snakes;
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        SnakeBodySegment *add2 = new SnakeBodySegment(2);
+        snakes.push_back(*add1);
+        snakes.push_back(*add2);
+
         LinkedList *snake_list = new LinkedList(snakes);
-        REQUIRE(snake_list->size() == 5);
+        REQUIRE(snake_list->size() == 2);
         REQUIRE(snake_list->GetVector() == snakes);
 
-        vector<SnakeBodySegment> snakes2 = {};
+        vector<SnakeBodySegment> snakes2;
         LinkedList *snake_list2 = new LinkedList(snakes2);
-        REQUIRE(snake_list2->size() == 5);
+        REQUIRE(snake_list2->size() == 0);
         REQUIRE(snake_list2->GetVector() == snakes2);
     }
 
     TEST_CASE("destructor tests") {
-        vector<SnakeBodySegment> snakes = {1, 2, 3, 4, 0};
-        LinkedList *snake_list = new LinkedList(snakes);
+        LinkedList *snake_list = new LinkedList();
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        snake_list->push_back(*add1);
         snake_list->~LinkedList();
         REQUIRE(snake_list->size() == 0);
     }
 
-    TEST_CASE("deep copy constructor tests") {
-        vector<SnakeBodySegment> snakes = {1, 2, 3, 4, 0};
-        LinkedList *snake_list = new LinkedList(snakes);
+    TEST_CASE("deep copy constructor test") {
+        LinkedList *snake_list = new LinkedList();
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        snake_list->push_back(*add1);
         LinkedList *snake_list2 = new LinkedList(*snake_list);
-        REQUIRE(snake_list == snake_list2);
+        REQUIRE(snake_list->size() == snake_list2->size());
+        }
 
-        snake_list->pop_back();
-        LinkedList *snake_list3 = new LinkedList(*snake_list);
-        REQUIRE(snake_list == snake_list3);
-    }
-
-    TEST_CASE("move constructor tests") {
-        vector<SnakeBodySegment> snakes = {1, 2, 3, 4, 0};
-        LinkedList *snake_list = new LinkedList(snakes);
+    TEST_CASE("move constructor test") {
+        LinkedList *snake_list = new LinkedList();
+        SnakeBodySegment *add1 = new SnakeBodySegment(1);
+        snake_list->push_back(*add1);
         LinkedList *snake_list2 = new LinkedList(*snake_list);
         REQUIRE(snake_list->head_ == snake_list2->head_);
-
-        snake_list->pop_back();
-        LinkedList *snake_list3 = new LinkedList(*snake_list);
-        REQUIRE(snake_list->head_ == snake_list3->head_);
-    }*/
+    }
 }
