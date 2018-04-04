@@ -23,8 +23,7 @@ class LinkedList {
      *  Add member variables and private helper functions
      *  internal structs, classes, or enum types here
      */
-
-	static ListNode* head_;
+public: ListNode* head_;
 
 public:
     // Default constructor

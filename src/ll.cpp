@@ -167,9 +167,7 @@ namespace snakelinkedlist {
     }
 
     //DEFAULT CONSTRUCTOR
-    LinkedList::LinkedList() {
-        head_ = nullptr;
-    }
+    LinkedList::LinkedList(): head_(NULL){};
 
     //INITALIZE FROM VECTOR
     explicit LinkedList::LinkedList(const std::vector<SnakeBodySegment> &values) {
