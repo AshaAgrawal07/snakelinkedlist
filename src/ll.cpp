@@ -25,7 +25,7 @@ using namespace snakelinkedlist;
     LinkedList<ElementType>::LinkedList(const LinkedList<ElementType> &source) {
         if (source.head_) {
             head_ = new LinkedListNode(*source.head_);
-            LinkedListNode *current = head_;
+            LinkedListNode* current = head_;
             LinkedListNode *original = source.head_;
 
             while (original->next_) {
@@ -70,8 +70,8 @@ using namespace snakelinkedlist;
             return *this;
         } else {
             head_ = source.head_;
-            LinkedListNode *current = head_;
-            LinkedListNode *original = source.head_;
+            LinkedListNode* current = head_;
+            LinkedListNode* original = source.head_;
 
             while (original->next_) {
                 current->next_ = new LinkedListNode(original->data_);
@@ -97,7 +97,7 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_front(ElementType value) {
-        LinkedListNode *new_node = new LinkedListNode(value);
+        LinkedListNode* new_node = new LinkedListNode(value);
         new_node->next_ = head_;
         head_ = new_node;
         size_++;
@@ -105,7 +105,7 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_back(ElementType value) {
-        LinkedListNode *add_node = new LinkedListNode(value);
+        LinkedListNode* add_node = new LinkedListNode(value);
         if (!head_) {
             push_front(value);
         } else {
@@ -132,7 +132,7 @@ using namespace snakelinkedlist;
             return ElementType();
         }
 
-        LinkedListNode *current = head_;
+        LinkedListNode* current = head_;
         while (current->next_ != nullptr) {
             current = current->next_;
         }
@@ -144,7 +144,7 @@ using namespace snakelinkedlist;
         if (!head_) {
             return;
         }
-        LinkedListNode *tmp = head_;
+        LinkedListNode* tmp = head_;
         if (!head_->next_) {
             head_ = nullptr;
         } else {
@@ -159,7 +159,7 @@ using namespace snakelinkedlist;
         if (!head_) {
             return;
         }
-        LinkedListNode *remove_next = head_;
+        LinkedListNode* remove_next = head_;
         while (remove_next->next_ && remove_next->next_->next_) {
             remove_next = remove_next->next_;
         }
@@ -175,7 +175,7 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     std::vector<ElementType> LinkedList<ElementType>::GetVector() const {
-        LinkedListNode *current = head_;
+        LinkedListNode* current = head_;
         vector <ElementType> snake_data;
         while (current != nullptr) {
             snake_data.push_back(current->data_);
@@ -194,8 +194,8 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     void LinkedList<ElementType>::clear() {
-        LinkedListNode *current = head_;
-        LinkedListNode *next;
+        LinkedListNode* current = head_;
+        LinkedListNode* next;
         while (current != nullptr) {
             next = current->next_;
             delete current;
@@ -206,7 +206,7 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     std::ostream &operator<<(std::ostream &os, const LinkedList<ElementType> &list) {
-        LinkedList::LinkedListNode *current = list.head_;
+        LinkedList<ElementType>::LinkedListNode* current = list.head_;
         if (list.size() == 1) {
             os << current->data_;
         } else {
@@ -229,14 +229,14 @@ using namespace snakelinkedlist;
         } else if (n < 0 || n >= size()) {
             return;
         } else {
-            LinkedListNode *current = head_;
+            LinkedListNode* current = head_;
 
             //iterate to get current to the nth node
             for (int counter = n - 1; counter > 0; counter--) {
                 current = current->next_;
             }
             //now point previous to the next of the current and take the nth element out
-            LinkedListNode *link = current->next_->next_;
+            LinkedListNode* link = current->next_->next_;
             delete current->next_;
             current->next_ = link;
             size_--;
@@ -248,8 +248,8 @@ using namespace snakelinkedlist;
         if (this->size() != rhs.size()) {
             return false;
         }
-        LinkedListNode *curr = this->head_;
-        LinkedListNode *current = rhs.head_;
+        LinkedListNode* curr = this->head_;
+        LinkedListNode* current = rhs.head_;
         while (current != nullptr) {
             if (curr->data_ != current->data_) {
                 return false;
@@ -265,14 +265,12 @@ using namespace snakelinkedlist;
         if (lhs.size() != rhs.size()) {
             return true;
         }
-        LinkedList::LinkedListNode *curr = lhs.head_;
-        LinkedList::LinkedListNode *current = rhs.head_;
-        while (current != NULL && curr != NULL) {
-            if (curr->data_ == current->data_) {
+        LinkedList<ElementType>::LinkedListNode* curr_r = rhs.head_;
+        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
+            if (curr_l == curr_r) {
                 return false;
             }
-            current = current->next_;
-            curr = curr->next_;
+            curr_r = curr_r->next_;
         }
         return true;
     }
