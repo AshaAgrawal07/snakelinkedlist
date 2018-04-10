@@ -17,7 +17,7 @@ namespace snakelinkedlist {
             LinkedListNode *next_;
             ElementType data_;
         };
-
+    public:
         LinkedListNode *head_;
         LinkedListNode *tail_;
         int size_;
@@ -47,6 +47,7 @@ namespace snakelinkedlist {
 
         // Iterator
         class Iterator : std::iterator<std::forward_iterator_tag, ElementType> {
+        public:
             LinkedListNode *current_;
             friend LinkedList<ElementType>;
         public:
