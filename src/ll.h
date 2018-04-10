@@ -19,8 +19,8 @@ namespace snakelinkedlist {
         };
     public:
         LinkedListNode *head_;
-        LinkedListNode *tail_;
-        int size_;
+        //LinkedListNode *tail_;
+        int length_;
     public:
         LinkedList();                                                   // Default constructor
         explicit LinkedList(const std::vector<ElementType> &values);    // Initilize from vector
