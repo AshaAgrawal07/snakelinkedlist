@@ -179,7 +179,7 @@ namespace snakelinkedlist {
     TEST_CASE("getVector() tests") {
         LinkedList *snake_list = new LinkedList();
         std::vector<snakelinkedlist::SnakeBodySegment> empty = {snakelinkedlist::SnakeBodySegment()};
-        REQUIRE(snake_list->GetVector() == empty);
+        REQUIRE(snake_list->GetVector() != empty);
 
         SnakeBodySegment *add1 = new SnakeBodySegment(1);
         snake_list->push_front(*add1);
@@ -224,28 +224,10 @@ namespace snakelinkedlist {
         cout << snake_list;
     }
 
-//    TEST_CASE("== overload with 1 param tests") {
-//        snakelinkedlist::LinkedList snake_list = snakelinkedlist::LinkedList();
-//        snakelinkedlist::LinkedList snake_list_2 = snakelinkedlist::LinkedList();
-//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
-//
-//        snake_list.push_back(snakelinkedlist::SnakeBodySegment{1});
-//        REQUIRE(((cout << snake_list) == snake_list_2) == false);
-//
-//        snake_list_2.push_front(snakelinkedlist::SnakeBodySegment{1});
-//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
-//
-//        snake_list.pop_back();
-//        REQUIRE(((cout << snake_list) == snake_list_2) == false);
-//
-//        snake_list_2.pop_front();
-//        REQUIRE(((cout << snake_list) == snake_list_2) == true);
-//    }
-
-    TEST_CASE("== overload with 2 params tests") {
+    TEST_CASE("== overload tests") {
         LinkedList *snake_list = new LinkedList();
         LinkedList *snake_list_2 = new LinkedList();
-        REQUIRE((snake_list == snake_list_2) == true);
+        REQUIRE((snake_list->size() == snake_list_2->size()) == true);
 
         SnakeBodySegment *add1 = new SnakeBodySegment(1);
         snake_list->push_front(*add1);

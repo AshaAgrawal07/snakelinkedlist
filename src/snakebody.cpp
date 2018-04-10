@@ -14,5 +14,5 @@ bool operator==(const SnakeBodySegment& lhs, const SnakeBodySegment& rhs) {
 bool operator!=(const SnakeBodySegment& lhs, const SnakeBodySegment& rhs) {
     return !(lhs == rhs);
 }
-
+//hi
 } // namespace snakelinkedlist
