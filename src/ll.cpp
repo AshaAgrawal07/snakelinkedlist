@@ -36,6 +36,7 @@ using namespace snakelinkedlist;
             }
         } else {
             head_ = nullptr;
+            tail_ = nullptr;
         }
         this->size_ = source.size_;
     }
@@ -100,22 +101,27 @@ using namespace snakelinkedlist;
         LinkedListNode* new_node = new LinkedListNode(value);
         new_node->next_ = head_;
         head_ = new_node;
+        if (!head_->next_) {
+            tail_ = head_;
+        }
         size_++;
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_back(ElementType value) {
         LinkedListNode* add_node = new LinkedListNode(value);
-        if (!head_) {
-            push_front(value);
-        } else {
-            LinkedListNode *tail = head_;
-            while (tail->next_) {
-                tail = tail->next_;
-            }
-            tail->next_ = add_node;
-            size_++;
-        }
+//        if (!head_) {
+//            push_front(value);
+//        } else {
+//            LinkedListNode *tail = head_;
+//            while (tail->next_) {
+//                tail = tail->next_;
+//            }
+//            tail->next_ = add_node;
+//            size_++;
+//        }
+        tail_->next_ = add_node;
+        tail_ = tail_->next_;
     }
 
     template<typename ElementType>
@@ -128,15 +134,16 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     ElementType LinkedList<ElementType>::back() const {
-        if (size() == 0) {
-            return ElementType();
-        }
-
-        LinkedListNode* current = head_;
-        while (current->next_ != nullptr) {
-            current = current->next_;
-        }
-        return current->data_;
+//        if (size() == 0) {
+//            return ElementType();
+//        }
+//
+//        LinkedListNode* current = head_;
+//        while (current->next_ != nullptr) {
+//            current = current->next_;
+//        }
+//        return current->data_;
+        return tail_->data_;
     }
 
     template<typename ElementType>
@@ -156,7 +163,7 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     void LinkedList<ElementType>::pop_back() {
-        if (!head_) {
+        if (!tail_) {
             return;
         }
         LinkedListNode* remove_next = head_;
@@ -164,7 +171,8 @@ using namespace snakelinkedlist;
             remove_next = remove_next->next_;
         }
         delete remove_next->next_;
-        remove_next = nullptr;
+        //remove_next = nullptr;
+        remove_next = tail_;
         size_--;
     }
 
@@ -265,7 +273,7 @@ using namespace snakelinkedlist;
         if (lhs.size() != rhs.size()) {
             return true;
         }
-        LinkedList<ElementType>::LinkedListNode* curr_r = rhs.head_;
+        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
         for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
             if (curr_l == curr_r) {
                 return false;
