@@ -34,7 +34,7 @@ namespace snakelinkedlist {
         }
         ListNode *tmp = head_;
         if (!head_->next_) {
-            head_ == nullptr;
+            head_ = nullptr;
         } else {
             length--;
             head_ = head_->next_;
