@@ -258,22 +258,22 @@ using namespace snakelinkedlist;
         return true;
     }
 
-    template<typename ElementType>
-    bool operator!=(const LinkedList<ElementType> &lhs, const LinkedList<ElementType> &rhs) {
-        if (lhs.size() != rhs.size()) {
-            return true;
-        }
-        ListNode* curr = lhs.head_;
-        ListNode* current = rhs.head_;
-        while (current != NULL && curr != NULL) {
-            if (curr->data_ == current->data_) {
-                return false;
-            }
-            current = current->next_;
-            curr = curr->next_;
-        }
-        return true;
-    }
+//    template<typename ElementType>
+    ////    bool operator!=(const LinkedList<ElementType> &lhs, const LinkedList<ElementType> &rhs) {
+    ////        if (lhs.size() != rhs.size()) {
+    ////            return true;
+    ////        }
+    ////        ListNode* curr = lhs.head_;
+    ////        ListNode* current = rhs.head_;
+    ////        while (current != NULL && curr != NULL) {
+    ////            if (curr->data_ == current->data_) {
+    ////                return false;
+    ////            }
+    ////            current = current->next_;
+    ////            curr = curr->next_;
+    ////        }
+    ////        return true;
+    ////    }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::Iterator &LinkedList<ElementType>::Iterator::operator++() {
