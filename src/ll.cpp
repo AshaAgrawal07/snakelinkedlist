@@ -202,21 +202,21 @@ using namespace snakelinkedlist;
         length_ = 0;
     }
 
-//    template<typename ElementType>
-//    std::ostream &operator<<(std::ostream &os, const LinkedList<ElementType> &list) {
-//        LinkedList<ElementType>::LinkedListNode* current = list.head_;
-//        if (list.size() == 1) {
-//            os << current->data_;
-//        } else {
-//            while (current && current->next_) {
-//                os << current->data_ << ", ";
-//                current = current->next_;
-//            }
-//            if (list.size() > 1) {
-//                os << current->data_;
-//            }
-//        }
-//    }
+    template<typename ElementType>
+    std::ostream &operator<<(std::ostream &os, const LinkedList<ElementType> &list) {
+        LinkedList<ElementType>::LinkedListNode* current = list.head_;
+        if (list.size() == 1) {
+            os << current->data_;
+        } else {
+            while (current && current->next_) {
+                os << current->data_ << ", ";
+                current = current->next_;
+            }
+            if (list.size() > 1) {
+                os << current->data_;
+            }
+        }
+    }
 
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveNth(int n) {
@@ -260,16 +260,16 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     bool operator!=(const LinkedList<ElementType> &lhs, const LinkedList<ElementType> &rhs) {
-//        if (lhs.size() != rhs.size()) {
-//            return true;
-//        }
-//        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
-//        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
-//            if (curr_l == curr_r) {
-//                return false;
-//            }
-//            curr_r = curr_r->next_;
-//        }
+        if (lhs.size() != rhs.size()) {
+            return true;
+        }
+        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
+        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
+            if (curr_l == curr_r) {
+                return false;
+            }
+            curr_r = curr_r->next_;
+        }
         return true;
     }
 
