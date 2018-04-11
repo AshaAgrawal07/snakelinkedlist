@@ -389,6 +389,25 @@ namespace snakelinkedlist {
     }
 
     TEST_CASE("begin() test") {
-        
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add1 = new snakelinkedlist::SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+        auto iterator = snake_list->begin();
+        REQUIRE(iterator.current_->data_ == snakelinkedlist::SnakeBodySegment(1));
+    }
+
+    TEST_CASE("end() test") {
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add1 = new snakelinkedlist::SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+
+        auto iterator = snake_list->begin();
+        REQUIRE(iterator.current_->data_ == snakelinkedlist::SnakeBodySegment(1));
+
+        snakelinkedlist::SnakeBodySegment* add2 = new snakelinkedlist::SnakeBodySegment(2);
+        snake_list->push_front(*add2);
+
+        auto iterator2 = snake_list->begin();
+        REQUIRE(iterator2.current_->data_ == snakelinkedlist::SnakeBodySegment(2));
     }
 }
