@@ -345,4 +345,50 @@ namespace snakelinkedlist {
         snake_list2->operator=(*snake_list);
         REQUIRE(snake_list2->size() == 1);
     }
+
+    //ITERATOR TESTS
+    TEST_CASE("default constructor") {
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        auto iterator = snake_list->begin();
+        REQUIRE(iterator.current_ = nullptr);
+    }
+
+    TEST_CASE("++ test") {
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add1 = new snakelinkedlist::SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+        snakelinkedlist::SnakeBodySegment* add2 = new snakelinkedlist::SnakeBodySegment(2);
+        snake_list->push_back(*add2);
+
+        auto iterator = snake_list->begin();
+        REQUIRE(iterator.current_->data_ == snakelinkedlist::SnakeBodySegment(1));
+        iterator.operator++();
+        REQUIRE(iterator.current_->data_ == snakelinkedlist::SnakeBodySegment(2));
+    }
+
+    TEST_CASE("* test") {
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add1 = new snakelinkedlist::SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+
+        auto iterator = snake_list->begin();
+        REQUIRE(iterator.operator*() == snakelinkedlist::SnakeBodySegment(1));
+    }
+
+    TEST_CASE("!= test") {
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add1 = new snakelinkedlist::SnakeBodySegment(1);
+        snake_list->push_back(*add1);
+        LinkedList<snakelinkedlist::SnakeBodySegment>* snake_list2 = new LinkedList<snakelinkedlist::SnakeBodySegment>();
+        snakelinkedlist::SnakeBodySegment* add2 = new snakelinkedlist::SnakeBodySegment(2);
+        snake_list2->push_back(*add2);
+
+        auto iterator = snake_list->begin();
+        auto iterator2 = snake_list2->begin();
+        REQUIRE((iterator.operator!=(iterator2)) == true);
+    }
+
+    TEST_CASE("begin() test") {
+        
+    }
 }
