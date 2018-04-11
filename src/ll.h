@@ -3,9 +3,10 @@
 
 #include <iostream>
 #include <vector>
+//#include "../../../../../../Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.13.26128/include/vector"
 
 namespace snakelinkedlist {
-
+using namespace std;
 // Template linked list class
     template<typename ElementType>
     class LinkedList {
@@ -23,7 +24,7 @@ namespace snakelinkedlist {
         int length_;
     public:
         LinkedList();                                                   // Default constructor
-        explicit LinkedList(const std::vector<ElementType> &values);    // Initilize from vector
+        explicit LinkedList(const vector<ElementType> &values);    // Initilize from vector
 
         // Big 5
         LinkedList(const LinkedList& source);                                           // Copy constructor
@@ -39,14 +40,14 @@ namespace snakelinkedlist {
         void pop_front();                           // remove front element
         void pop_back();                            // remove back element
         int size() const;                           // return number of elements
-        std::vector<ElementType> GetVector() const; // return a vector of the values
+       vector<ElementType> GetVector() const; // return a vector of the values
         bool empty() const;                         // check if empty
         void clear();                               // clear the contents
         void RemoveNth(int n);                      // remove the Nth element from the front 0 indexed
         bool operator==(const LinkedList<ElementType> &rhs) const;
 
         // Iterator
-        class Iterator : std::iterator<std::forward_iterator_tag, ElementType> {
+        class Iterator : std::iterator<forward_iterator_tag, ElementType> {
         public:
             LinkedListNode *current_;
             friend LinkedList<ElementType>;
@@ -57,8 +58,8 @@ namespace snakelinkedlist {
             bool operator!=(const Iterator& other);
         };
 
-        Iterator begin();
-        Iterator end();
+        Iterator begin() const;
+        Iterator end() const;
     };
 
     template<typename ElementType>

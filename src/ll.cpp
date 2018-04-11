@@ -1,9 +1,10 @@
-#include <utility>
-#include "ll.h"
-#include <vector>
-#include "snakebody.h"
 using namespace std;
 using namespace snakelinkedlist;
+
+//#include <utility>
+#include "ll.h"
+#include <vector>
+
 
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList() : head_(nullptr), length_(0) { }
@@ -201,21 +202,21 @@ using namespace snakelinkedlist;
         length_ = 0;
     }
 
-    template<typename ElementType>
-    std::ostream &operator<<(std::ostream &os, const LinkedList<ElementType> &list) {
-        LinkedList<ElementType>::LinkedListNode* current = list.head_;
-        if (list.size() == 1) {
-            os << current->data_;
-        } else {
-            while (current && current->next_) {
-                os << current->data_ << ", ";
-                current = current->next_;
-            }
-            if (list.size() > 1) {
-                os << current->data_;
-            }
-        }
-    }
+//    template<typename ElementType>
+//    std::ostream &operator<<(std::ostream &os, const LinkedList<ElementType> &list) {
+//        LinkedList<ElementType>::LinkedListNode* current = list.head_;
+//        if (list.size() == 1) {
+//            os << current->data_;
+//        } else {
+//            while (current && current->next_) {
+//                os << current->data_ << ", ";
+//                current = current->next_;
+//            }
+//            if (list.size() > 1) {
+//                os << current->data_;
+//            }
+//        }
+//    }
 
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveNth(int n) {
@@ -259,16 +260,16 @@ using namespace snakelinkedlist;
 
     template<typename ElementType>
     bool operator!=(const LinkedList<ElementType> &lhs, const LinkedList<ElementType> &rhs) {
-        if (lhs.size() != rhs.size()) {
-            return true;
-        }
-        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
-        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
-            if (curr_l == curr_r) {
-                return false;
-            }
-            curr_r = curr_r->next_;
-        }
+//        if (lhs.size() != rhs.size()) {
+//            return true;
+//        }
+//        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
+//        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
+//            if (curr_l == curr_r) {
+//                return false;
+//            }
+//            curr_r = curr_r->next_;
+//        }
         return true;
     }
 
@@ -291,14 +292,14 @@ using namespace snakelinkedlist;
     }
 
     template<typename ElementType>
-    typename LinkedList<ElementType>::Iterator LinkedList<ElementType>::begin() {
+    typename LinkedList<ElementType>::Iterator LinkedList<ElementType>::begin() const{
         Iterator start;
         start.current_ = head_;
         return start;
     }
 
     template<typename ElementType>
-    typename LinkedList<ElementType>::Iterator LinkedList<ElementType>::end() {
+    typename LinkedList<ElementType>::Iterator LinkedList<ElementType>::end() const{
         Iterator stop;
         stop.current_ = nullptr;
         return stop;
