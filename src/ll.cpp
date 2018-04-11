@@ -263,12 +263,14 @@ using namespace snakelinkedlist;
         if (lhs.size() != rhs.size()) {
             return true;
         }
-        LinkedList<ElementType>::Iterator* curr_r = rhs.head_;
-        for(LinkedList<ElementType>::LinkedListNode* curr_l = lhs.head_; curr_l; curr_l = curr_l->next_) {
-            if (curr_l == curr_r) {
+        ListNode* curr = lhs.head_;
+        ListNode* current = rhs.head_;
+        while (current != NULL && curr != NULL) {
+            if (curr->data_ == current->data_) {
                 return false;
             }
-            curr_r = curr_r->next_;
+            current = current->next_;
+            curr = curr->next_;
         }
         return true;
     }
